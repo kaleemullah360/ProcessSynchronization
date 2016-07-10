@@ -37,16 +37,16 @@ Provide a file synch.c to provide solution to synchronization. Your solution sho
 It can contain six functions, which are invoked by the "shark and fish simulation" created by you.
 
 
-sharkb4eating: called each time a shark eats, before it eats
+	sharkb4eating: called each time a shark eats, before it eats
 
-fishb4eating: called each time a fish eats, before it eats
+	fishb4eating: called each time a fish eats, before it eats
 
-sharkafteating: called each time a shark eats, after it eats
+	sharkafteating: called each time a shark eats, after it eats
 
-fishafteating: called each time a fish eats, after it eats
+	fishafteating: called each time a fish eats, after it eats
 
-sharkfishsyncinit: called only once, before the shark and fish are created
+	sharkfishsyncinit: called only once, before the shark and fish are created
 
-sharfishsynccleanup: called only once, after all sharks and fish have finished
+	sharfishsynccleanup: called only once, after all sharks and fish have finished
 
 
