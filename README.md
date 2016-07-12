@@ -2,11 +2,15 @@
 
 S sharks and F fish live in an ocean with only ONE sea food-point serving sea-weed having N seats. A Fish can dine at a sea-food point as long as a shark does not arrive there simultaneously. If the shark sees the fish, it must eat the fish. There are N seats at the sea-food point, S sharks and F fish. Our sharks and fish love sea-weed, however, shark does not mind eating fish as well.
 
-### Dependancies:
+## Dependancies:
 
-[Microsoft Visual Studio Express 2013](https://www.microsoft.com/en-pk/download/details.aspx?id=44914)
+This project is created with Mono JIT compiler version 4.2.1 (Debian 4.2.1.102+dfsg2-7ubuntu4).
+If you're not aware how to setup this project in Ubuntu OS just do
 
-[.NET Framework 4.5](https://www.microsoft.com/en-pk/download/details.aspx?id=40779) will be required to execute.
+```sh
+bash ./runonce.sh
+```
+it will install Mono along with its dependancies.
 
 ## Group Members:
 
