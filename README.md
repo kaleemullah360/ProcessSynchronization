@@ -8,12 +8,6 @@ S sharks and F fish live in an ocean with only ONE sea food-point serving sea-we
 
 [.NET Framework 4.5](https://www.microsoft.com/en-pk/download/details.aspx?id=40779) will be required to execute.
 
-### Run Application:
-
-```sh
-~Project_Dire\bin\Debug folder contain AOS-A1-P1.exe, input.txt and output.txt
-```
-
 ## Group Members:
 
 1. Nayyar Ahmed <MSCS14051@ITU.EDU.PK>
@@ -21,6 +15,23 @@ S sharks and F fish live in an ocean with only ONE sea food-point serving sea-we
 3. Kaleem Ullah <MSCS14059@ITU.EDU.PK>
 4. Rai Rashid   <MSCS14048@ITU.EDU.PK>
 
+### Run Application:
+
+compile program.
+
+```sh
+make compile
+```
+Then, to run the program do,
+
+```sh
+make run
+```
+for clean-up,
+
+```sh
+make clean
+```
 
 ##Introduction to Problem:
 
