@@ -14,22 +14,14 @@ namespace ProcessSynchronization_Space {
 
   // define shark properties
 	class Shark{
-    // set the getter and setter for each Block method
-		public string fish_Name{
-			get;
-			set;
-		}
-
+		public string fish_Name{ get; set; }
+		public string fish_Id{ get; set; }
 	}
 
 	// define fish properties
 	class Fish{
-    // set the getter and setter for each Block method
-		public string shark_Name{
-			get;
-			set;
-		}
-
+		public string shark_Name{ get; set; }
+		public string shark_Id{ get; set; }
 	}
 
 	class SharkFish_Class{
@@ -65,10 +57,51 @@ namespace ProcessSynchronization_Space {
 
         }
 
+        public static void AccessCodewithSemaphore(object objSemaphore)
+        {
+            bool IsComplete = false;
+            Semaphore l_SemaPhore = (Semaphore)objSemaphore;
+            while (!IsComplete)
+            {
+                if (l_SemaPhore.WaitOne(200, false))
+                {
+                    try
+                    {
+                        listBox1.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Entered" });
+                        Thread.Sleep(500);
+                    }
+                    finally
+                    {
+                        l_SemaPhore.Release();
+                        listBox1.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Exit" });
+                        IsComplete = true;
+                    }
+                }
+                else
+                {
+                    listBox1.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Waiting To enter" });
+                }
+            }
+        }
+
         /*============ Main Thread Start Here. ======= */
         static void Main(string []args){
 
 			Console.Write("3 sharks and 4 fish eating using 2 seats in the food-point\n");
+
+
+            int TotalThread = 5;
+            int SemaphoreCount = 3;
+            Thread[] Threads = new Thread[TotalThread];
+            Semaphore Sema = new Semaphore(SemaphoreCount, SemaphoreCount);
+
+            for (int i = 0; i < TotalThread; i++)
+            {
+                Threads[i] = new Thread(new ParameterizedThreadStart(AccessCodewithSemaphore));
+                Threads[i].IsBackground = true;
+                Threads[i].Start(Sema);
+            }
+
 		}
 	}
 }
