@@ -64,14 +64,14 @@ namespace ProcessSynchronization_Space {
 
         static void Shark_SempStart(object id)
         {
-            Console.WriteLine(id + "Shark Wants to Get Enter");
+            Console.WriteLine("Shark " + id + " Wants to Get Enter");
             try
             {
                 obj.WaitOne();
                 Console.WriteLine(" Success: Shark " + id + " is in and Weeding");
 
                 Thread.Sleep(2000);
-                Console.WriteLine(id + "Shark is Leaving");
+                Console.WriteLine("Shark "+ id +" is Leaving");
             }
             finally
             {
@@ -82,14 +82,14 @@ namespace ProcessSynchronization_Space {
 
         static void Fish_SempStart(object id)
         {
-            Console.WriteLine(id + "Fish Wants to Get Enter");
+            Console.WriteLine("Fish " + id + " Wants to Get Enter");
             try
             {
                 obj.WaitOne();
                 Console.WriteLine(" Success: Fish " + id + " is in and Weeding");
 
                 Thread.Sleep(2000);
-                Console.WriteLine(id + "Fish is Leaving");
+                Console.WriteLine("Fish "+ id +" is Leaving");
             }
             finally
             {
