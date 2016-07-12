@@ -6,6 +6,10 @@ using System.IO;
 using System.Threading;
 using System.Collections.Specialized;
 
+// for benchmarking
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
+
 namespace ProcessSynchronization_Space {
 
   // define shark properties
@@ -67,3 +71,4 @@ namespace ProcessSynchronization_Space {
 			Console.Write("3 sharks and 4 fish eating using 2 seats in the food-point\n");
 		}
 	}
+}
