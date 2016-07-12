@@ -27,33 +27,33 @@ namespace ProcessSynchronization_Space {
 	class SharkFish_Class{
 
 		/*============ fishb4eating: called each time a fish eats, before it eats. ======= */
-		public static void fishb4eating(Block[] remaining_Blocks, int chunk_Size, string process_Name){
+		public static void fishb4eating(){
 
 		}
 
 		/*============ sharkafteating: called each time a shark eats, after it eats. ======= */
-		public static void sharkafteating(List <Block> blocks_List){
+		public static void sharkafteating(){
 
 		}
 
 		/*============ fishafteating: called each time a fish eats, after it eats. ======= */
-		public static int fishafteating(int size, int current_Index, Block[] remaining_Blocks){
+		public static int fishafteating(){
 
 		}
 
 		/*============ sharkfishsyncinit: called only once, before the shark and fish are created. ======= */
-		public static void sharkfishsyncinit(string process_Name, int size, Block[] remaining_Blocks){
+		public static void sharkfishsyncinit(){
 
         }
 
 		/*============ sharfishsynccleanup: called only once, after all sharks and fish have finished. ======= */
-        public static void sharfishsynccleanup(Block[] remaining_Blocks, List<Block> blocks_List, string process_Name){
+        public static void sharfishsynccleanup(){
 
         	
         }
 
         /*============ syncproblem . ======= */
-        public static void syncproblem (string  process_Name, Block[] remaining_Blocks, int size, int chunk_Size){
+        public static void syncproblem (){
 
         }
 
@@ -67,19 +67,19 @@ namespace ProcessSynchronization_Space {
                 {
                     try
                     {
-                        listBox1.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Entered" });
+                        Console.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Entered" });
                         Thread.Sleep(500);
                     }
                     finally
                     {
                         l_SemaPhore.Release();
-                        listBox1.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Exit" });
+                        Console.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Exit" });
                         IsComplete = true;
                     }
                 }
                 else
                 {
-                    listBox1.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Waiting To enter" });
+                    Console.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Waiting To enter" });
                 }
             }
         }

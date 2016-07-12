@@ -1,3 +1,16 @@
+compile:
+	dmcs synch.cs
+
+run:
+	./synch.exe
+
+clean:
+	rm -f *.exe
+
+clean-all: 
+	rm -f *.o
+	rm -f *.exe
+
 view-project:
 	firefox https://github.com/kaleemullah360/ProcessSynchronization &
 
