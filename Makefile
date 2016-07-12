@@ -4,6 +4,12 @@ compile:
 run:
 	./synch.exe
 
+compile-dev:
+	dmcs synch-dev.cs
+
+run-dev:
+	./synch-dev.exe
+
 clean:
 	rm -f *.exe
 
