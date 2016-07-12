@@ -38,7 +38,7 @@ namespace ProcessSynchronization_Space {
 
 		/*============ fishafteating: called each time a fish eats, after it eats. ======= */
 		public static int fishafteating(){
-
+			return 0;
 		}
 
 		/*============ sharkfishsyncinit: called only once, before the shark and fish are created. ======= */
@@ -57,51 +57,85 @@ namespace ProcessSynchronization_Space {
 
         }
 
-        public static void AccessCodewithSemaphore(object objSemaphore)
+
+       static Semaphore obj = new Semaphore(2, 4);
+
+
+
+        static void Shark_SempStart(object id)
         {
-            bool IsComplete = false;
-            Semaphore l_SemaPhore = (Semaphore)objSemaphore;
-            while (!IsComplete)
+            Console.WriteLine(id + "Shark Wants to Get Enter");
+            try
             {
-                if (l_SemaPhore.WaitOne(200, false))
-                {
-                    try
-                    {
-                        Console.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Entered" });
-                        Thread.Sleep(500);
-                    }
-                    finally
-                    {
-                        l_SemaPhore.Release();
-                        Console.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Exit" });
-                        IsComplete = true;
-                    }
-                }
-                else
-                {
-                    Console.BeginInvoke(new ParameterizedThreadStart(UpdateUI), new object[] { "Thread ID : " + Thread.CurrentThread.ManagedThreadId.ToString() + " : Waiting To enter" });
-                }
+                obj.WaitOne();
+                Console.WriteLine(" Success: Shark " + id + " is in and Weeding");
+
+                Thread.Sleep(2000);
+                Console.WriteLine(id + "Shark is Leaving");
+            }
+            finally
+            {
+                obj.Release();
+
+            }
+        }
+
+        static void Fish_SempStart(object id)
+        {
+            Console.WriteLine(id + "Fish Wants to Get Enter");
+            try
+            {
+                obj.WaitOne();
+                Console.WriteLine(" Success: Fish " + id + " is in and Weeding");
+
+                Thread.Sleep(2000);
+                Console.WriteLine(id + "Fish is Leaving");
+            }
+            finally
+            {
+                obj.Release();
+
             }
         }
 
         /*============ Main Thread Start Here. ======= */
-        static void Main(string []args){
+        static void Main(string[] args)
+        {
+        	Console.Write("3 sharks and 4 fish eating using 2 seats in the food-point\n");
 
-			Console.Write("3 sharks and 4 fish eating using 2 seats in the food-point\n");
 
+        	int milliSec = 3500;
+			String Result = "\0"; // null
+			Console.Write("Number of sharks in Sea ?\n");
 
-            int TotalThread = 5;
-            int SemaphoreCount = 3;
-            Thread[] Threads = new Thread[TotalThread];
-            Semaphore Sema = new Semaphore(SemaphoreCount, SemaphoreCount);
+			int sharks_in_Sea;
+			Result = Console.ReadLine();
+			while(!Int32.TryParse(Result, out sharks_in_Sea))
+			{
+				Console.Write("Not a valid number, try again.\n");
+				Result = Console.ReadLine();
+			}
 
-            for (int i = 0; i < TotalThread; i++)
+			Console.Write("Number of Fishes in Sea.\n");
+			int fishes_in_Sea;
+			Result = Console.ReadLine();
+			while(!Int32.TryParse(Result, out fishes_in_Sea))
+			{
+				Console.Write("Not a valid number, try again.\n");
+				Result = Console.ReadLine();
+			}
+
+            for (int i = 1; i <= sharks_in_Sea; i++)
             {
-                Threads[i] = new Thread(new ParameterizedThreadStart(AccessCodewithSemaphore));
-                Threads[i].IsBackground = true;
-                Threads[i].Start(Sema);
+                new Thread(Shark_SempStart).Start(i);
             }
 
-		}
+            for (int i = 1; i <= fishes_in_Sea; i++)
+            {
+                new Thread(Fish_SempStart).Start(i);
+            }
+
+            Console.ReadKey();
+        }
 	}
 }
