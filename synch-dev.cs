@@ -174,10 +174,10 @@ namespace ProcessSynchronization_Space {
 				Result = Console.ReadLine();
 			}
 
-			Shark[] new_Shark = new Shark[100];
-			Fish[] new_Fish = new Fish[100];
+			Shark[] new_Shark = new Shark[sharks_in_Sea];
+			Fish[] new_Fish = new Fish[fishes_in_Sea];
 
-			for (int i = 1; i <= new_Shark.Length; i++)
+			for (int i = 1; i <= 10; i++)
 			{	
 				Thread thread = new Thread(delegate(){
 			        Shark_SempStart(i, new_Shark);
@@ -186,7 +186,7 @@ namespace ProcessSynchronization_Space {
 			    thread.Start();
 			}
 
-			for (int i = 1; i <= new_Fish.Length; i++)
+			for (int i = 1; i <= 10; i++)
 			{	
 				Thread thread = new Thread(delegate(){
 			        Fish_SempStart(i, new_Fish);
