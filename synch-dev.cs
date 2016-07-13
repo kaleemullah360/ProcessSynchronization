@@ -174,8 +174,8 @@ namespace ProcessSynchronization_Space {
 				Result = Console.ReadLine();
 			}
 
-			Shark[] new_Shark = new Shark[sharks_in_Sea];
-			Fish[] new_Fish = new Fish[fishes_in_Sea];
+			Shark[] new_Shark = new Shark[100];
+			Fish[] new_Fish = new Fish[100];
 
 			for (int i = 1; i <= new_Shark.Length; i++)
 			{	
